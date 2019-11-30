@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/phone">Return home Page</a>
+<h1>Product detail</h1>
+<form th:object="${phones}">
+
+    <input th:type="hidden" name="id" th:field="*{id}"/>
+    <table>
+        <tr>
+            <td><b>phone name:</b></td>
+            <td th:text="${phones.getName()}"></td>
+        </tr>
+        <tr>
+            <td><b>Date of purchase</b></td>
+            <td th:text="${phones.getDateOfPurchase()}"></td>
+        </tr>
+        <tr>
+            <td><b>Price</b></td>
+            <td th:text="${phones.getPrice()}"></td>
+        </tr>
+        <tr>
+            <td><b>Description</b></td>
+            <td th:text="${phones.getDescription()}"></td>
+        </tr>
+        <tr>
+            <td><b>Image</b></td>
+            <td th:text="${phones.getImage()}"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

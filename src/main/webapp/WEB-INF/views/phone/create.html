@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/phone">return home page</a>
+<h1>Create a new phone</h1>
+<p th:text="${message}"></p>
+<form method="post" th:action="@{/phone-create}" th:object="${phones}">
+    <table>
+        <tr>
+            <td>Phone name</td>
+            <td><input type="text" th:field="*{name}"/></td>
+        </tr>
+        <tr>
+            <td>Date of purchase</td>
+            <td><input type="text" th:field="*{dateOfPurchase}"/></td>
+        </tr>
+        <tr>
+            <td>Price</td>
+            <td><input type="text" th:field="*{price}"/></td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td><input type="text" th:field="*{description}"/></td>
+        </tr>
+        <tr>
+            <td>Image</td>
+            <td><input type="text" th:field="*{image}"/></td>
+        </tr>
+        <tr>
+            <td><input type="submit" th:value="create"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
