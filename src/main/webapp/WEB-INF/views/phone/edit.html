@@ -28,7 +28,14 @@
         </tr>
         <tr>
             <td>Image</td>
-            <td><input type="text" th:field="*{image}"/></td>
+<!--            <td><input type="text" th:field="*{image}"/></td>-->
+            <td><img th:src="${phones.image}" style="height: 100px ; width: 100px"></td>
+        </tr>
+        <tr>
+            <td>Category</td>
+            <td><select th:field="*{category}">
+                <option th:each="p : ${categories}" th:value="${p.category_Id}" th:text="${p.category_name}"></option>
+            </select> </td>
         </tr>
         <tr>
             <td><input type="submit" th:value="save"></td>

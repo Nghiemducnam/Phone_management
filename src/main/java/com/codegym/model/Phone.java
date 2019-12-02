@@ -77,4 +77,12 @@ public class Phone {
     public void setImage(String image) {
         this.image = image;
     }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }

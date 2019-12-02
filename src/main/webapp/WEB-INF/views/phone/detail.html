@@ -31,6 +31,10 @@
             <td><b>Image</b></td>
             <td th:text="${phones.getImage()}"></td>
         </tr>
+        <tr>
+            <td><b>Category</b></td>
+            <td th:text="${phones.getCategory().category_name}"></td>
+        </tr>
     </table>
 </form>
 </body>

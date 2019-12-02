@@ -1,6 +1,8 @@
 package com.codegym.controller;
 
+import com.codegym.model.Category;
 import com.codegym.model.Phone;
+import com.codegym.service.CategoryService;
 import com.codegym.service.PhoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,6 +18,8 @@ import java.util.Optional;
 public class PhoneController {
     @Autowired
     PhoneService phoneService;
+    @Autowired
+    CategoryService categoryService;
 //    @GetMapping("/phone")
 //    public ModelAndView listPhones(@PageableDefault(size = 5, sort = "price") Pageable pageable){
 //        Page<Phone>phones = phoneService.findAll(pageable);
@@ -23,7 +27,10 @@ public class PhoneController {
 //        modelAndView.addObject("phones", phones);
 //        return modelAndView;
 //    }
-
+    @ModelAttribute("categories")
+    public Page<Category>categories(Pageable pageable){
+        return categoryService.findAll(pageable);
+    }
     @GetMapping("/phone-create")
     public ModelAndView createPhone(){
         ModelAndView modelAndView = new ModelAndView("phone/create");
@@ -102,6 +109,22 @@ public class PhoneController {
 
         ModelAndView modelAndView = new ModelAndView("phone/list");
         modelAndView.addObject("phones", phones);
+        return modelAndView;
+    }
+
+    @GetMapping("/searchByCategory")
+    public ModelAndView getPhoneByCategory(@RequestParam("search") Long categoryId, Pageable pageable) {
+        Page<Phone> phones;
+        if (categoryId == -1) {
+            phones = phoneService.findAll(pageable);
+        } else {
+            Category category = categoryService.findById(categoryId);
+            phones = phoneService.findAllByCategory(category, pageable);
+        }
+
+        ModelAndView modelAndView = new ModelAndView("/phone/list");
+        modelAndView.addObject("phones",phones);
+        modelAndView.addObject("search",categoryId);
         return modelAndView;
     }
 }

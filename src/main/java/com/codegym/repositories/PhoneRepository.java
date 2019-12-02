@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface PhoneRepository extends PagingAndSortingRepository<Phone,Long> {
-    Iterable<Phone> findAllByCategory(Category category);
+//    Iterable<Phone> findAllByCategory(Category category);
     Page<Phone> findAllByNameContaining(String name, Pageable pageable);
+    Page<Phone> findAllByCategory(Category category, Pageable pageable);
 }

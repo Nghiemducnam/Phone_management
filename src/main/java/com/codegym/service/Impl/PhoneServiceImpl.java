@@ -31,13 +31,18 @@ public class PhoneServiceImpl implements PhoneService {
         return phoneRepository.findAll(pageable);
     }
 
-    @Override
-    public Iterable<Phone> findAllByCategory(Category category) {
-        return phoneRepository.findAllByCategory(category);
-    }
+//    @Override
+//    public Iterable<Phone> findAllByCategory(Category category) {
+//        return phoneRepository.findAllByCategory(category);
+//    }
 
     @Override
     public Page<Phone> findAllByNameContaining(String name, Pageable pageable) {
         return phoneRepository.findAllByNameContaining(name, pageable);
+    }
+
+    @Override
+    public Page<Phone> findAllByCategory(Category category, Pageable pageable) {
+        return phoneRepository.findAllByCategory(category, pageable);
     }
 }

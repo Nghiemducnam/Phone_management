@@ -11,6 +11,19 @@
     <input type="submit" value="Search"/>
 </form>
 <br/>
+
+<form th:action="@{/searchByCategory}" onchange="this.submit()">
+    <a>Search by category</a>
+    <select name="search">
+        <option value=-1></option>
+        <option th:each="category :${categories}"
+                th:text="${category.category_name}"
+                th:value="${category.category_Id}"
+                th:selected="(${category.getCategory_Id()}==${search})"></option>
+    </select>
+
+</form>
+
 <a href="/phone-create">Create new Phone</a><br>
 <table border="1">
     <tr>
@@ -19,6 +32,7 @@
         <td>price</td>
         <td>Description</td>
         <td>Image</td>
+        <td>Category</td>
         <td>Edit</td>
         <td>Delete</td>
         <td>Detail</td>
@@ -29,7 +43,9 @@
             <td th:text="${phone.getDateOfPurchase()}"></td>
             <td th:text="${phone.getPrice()}"></td>
             <td th:text="${phone.getDescription()}"></td>
-            <td th:text="${phone.getImage()}"></td>
+            <td><img th:src="${phone.image}" style="height: 100px ; width: 100px"></td>
+<!--            <td th:text="${phone.getImage()}"></td>-->
+            <td th:text="${phone.getCategory().category_name}"></td>
             <td><a th:href="@{/phone-edit/__${phone.getId()}__}">Edit</a></td>
             <td><a th:href="@{/phone-delete/__${phone.getId()}__}">Delete</a></td>
             <td><a th:href="@{/phone-detail/__${phone.getId()}__}">Detail</a></td>

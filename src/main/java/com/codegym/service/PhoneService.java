@@ -17,7 +17,9 @@ public interface PhoneService {
 
     Page<Phone> findAll(Pageable pageable);
 
-    Iterable<Phone> findAllByCategory(Category category);
+//    Iterable<Phone> findAllByCategory(Category category);
 
     Page<Phone> findAllByNameContaining(String name, Pageable pageable);
+
+    Page<Phone> findAllByCategory(Category category, Pageable pageable);
 }
